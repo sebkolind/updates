@@ -7,7 +7,8 @@
  *
  * @example
  * ```ts
- * deno run -A jsr:@sebkolind/updates -p linear JSR-123
+ * deno install -gA -n updates jsr:@sebkolind/updates
+ * updates -p linear -f ~/updates.md JSR-123
  * ```
  */
 
