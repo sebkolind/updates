@@ -1,8 +1,9 @@
 import { createProvider } from "../provider.ts";
+import { Provider } from "../types/provider.ts";
 import { jiraFetcher } from "./fetcher.ts";
 
 const jiraProvider = createProvider({
-  name: "jira",
+  name: Provider.Jira,
   fetcher: jiraFetcher,
 });
 

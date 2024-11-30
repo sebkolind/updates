@@ -29,7 +29,7 @@ async function linearFetcher(taskIds: string[]): Promise<Task[]> {
       identifier: id,
       title: issue.title,
       url: issue.url,
-      message: state?.name === "Done" ? "Ready for QA" : "Work in Progress",
+      message: state?.name ?? "Unknown",
     };
   });
 

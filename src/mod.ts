@@ -3,7 +3,7 @@ import { parseArgs } from "jsr:@std/cli@1.0.7/parse-args";
 import { generateList } from "./utils.ts";
 import { getProvider } from "./provider.ts";
 import { Provider } from "./types/provider.ts";
-import { writeFile } from "./writeFile.ts";
+import { writeFile } from "./file.ts";
 import { validateProvider } from "./validation.ts";
 import { prompts } from "./prompt.ts";
 

@@ -37,9 +37,7 @@ async function jiraFetcher(taskIds: string[]): Promise<Task[]> {
       identifier: id,
       title: issue.fields.summary,
       url: `${jiraSiteUrl}/browse/${id}`,
-      // TODO This is very specific to the Jira instance we're using, and should maybe be generic.
-      // ? Maybe allow some sort of extension of a provider to allow for custom logic?
-      message: issue.fields.customfield_10040 ? "Ready for QA" : undefined,
+      message: issue.fields.status.name ?? "Unknown",
     };
   }));
 }

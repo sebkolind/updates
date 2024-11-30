@@ -1,4 +1,4 @@
-import enquirer from "npm:enquirer@2.3.6";
+import enquirer from "enquirer";
 
 import type { Prompts } from "./types/prompt.ts";
 import type { Task } from "./types/task.ts";

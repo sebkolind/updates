@@ -6,8 +6,8 @@ enum Provider {
 }
 
 type ProviderConfig = {
+  name: Provider;
   fetcher: (taskIds: string[]) => Promise<Task[]>;
-  name: string;
 };
 
 export { Provider };
