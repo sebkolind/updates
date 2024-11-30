@@ -3,6 +3,9 @@ import { Provider } from "./types/provider.ts";
 
 const providerSchema = z.nativeEnum(Provider);
 
+/**
+ * Validate a provider.
+ */
 function validateProvider(provider: string): Provider {
   const { success, data: name } = providerSchema.safeParse(provider);
 

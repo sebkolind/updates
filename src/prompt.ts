@@ -3,6 +3,9 @@ import enquirer from "enquirer";
 import type { Prompts } from "./types/prompt.ts";
 import type { Task } from "./types/task.ts";
 
+/**
+ * Prompts the user for task information.
+ */
 async function prompts(task: Task): Promise<Prompts> {
   const answers = await enquirer.prompt<Prompts>([
     {

@@ -5,6 +5,9 @@ type WriteFileParams = {
   list: string;
 };
 
+/**
+ * Writes a list of tasks to a file.
+ */
 async function writeFile({ path, list }: WriteFileParams) {
   try {
     const dir = path.substring(0, path.lastIndexOf("/"));

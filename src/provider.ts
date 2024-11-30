@@ -14,6 +14,9 @@ type GetProviderParams = {
   name: Provider;
 };
 
+/**
+ * Get a provider by name.
+ */
 function getProvider({ name }: GetProviderParams) {
   switch (name) {
     case Provider.Jira:
