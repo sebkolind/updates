@@ -1,4 +1,4 @@
-import { parseArgs } from "jsr:@std/cli@1.0.7/parse-args";
+import { parseArgs } from "@std/cli/parse-args";
 
 import { generateList } from "./utils.ts";
 import { getProvider } from "./provider.ts";
