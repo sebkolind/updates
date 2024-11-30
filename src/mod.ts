@@ -7,6 +7,19 @@ import { writeFile } from "./file.ts";
 import { validateProvider } from "./validation.ts";
 import { prompts } from "./prompt.ts";
 
+/**
+ * @module
+ *
+ * A CLI tool for generating a Markdown list of updates based on task IDs,
+ * fetched from a provider. The updates can be written to a file or printed to
+ * the console. Originally built for generating standup updates.
+ *
+ * @example
+ * ```ts
+ * deno run -A jsr:@sebkolind/updates -p linear JSR-123
+ * ```
+ */
+
 async function main() {
   const args = parseArgs(Deno.args, {
     boolean: ["yes"],
