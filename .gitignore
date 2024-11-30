@@ -1,2 +1,5 @@
-/.env
+.vscode
+.env
 /dist
+/cov
+/coverage
