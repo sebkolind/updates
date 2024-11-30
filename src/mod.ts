@@ -1,12 +1,3 @@
-import { parseArgs } from "@std/cli/parse-args";
-
-import { generateList } from "./utils.ts";
-import { getProvider } from "./provider.ts";
-import { Provider } from "./types/provider.ts";
-import { writeFile } from "./file.ts";
-import { validateProvider } from "./validation.ts";
-import { prompts } from "./prompt.ts";
-
 /**
  * @module
  *
@@ -19,6 +10,15 @@ import { prompts } from "./prompt.ts";
  * deno run -A jsr:@sebkolind/updates -p linear JSR-123
  * ```
  */
+
+import { parseArgs } from "@std/cli/parse-args";
+
+import { generateList } from "./utils.ts";
+import { getProvider } from "./provider.ts";
+import { Provider } from "./types/provider.ts";
+import { writeFile } from "./file.ts";
+import { validateProvider } from "./validation.ts";
+import { prompts } from "./prompt.ts";
 
 async function main() {
   const args = parseArgs(Deno.args, {
