@@ -1,18 +1,18 @@
-import { load } from "@std/dotenv";
+import { load } from "../config.ts";
 
 import type { JiraIssue } from "./types.ts";
 import type { Task } from "../types/task.ts";
 
-const env = await load();
+const config = await load();
 
-const jiraSiteUrl = env.JIRA_SITE_URL;
-const jiraUrl = env.JIRA_API_URL;
-const apiToken = env.JIRA_API_TOKEN;
-const email = "sebastian.sorensen@public.com";
+const siteUrl = config.providers.jira.siteUrl;
+const apiUrl = `${siteUrl}/rest/api/3`;
+const apiToken = config.providers.jira.api.key;
+const email = config.providers.jira.email;
 
 async function fetchJiraIssue(ticketId: string): Promise<JiraIssue> {
   const response = await fetch(
-    `${jiraUrl}/issue/${ticketId}`,
+    `${apiUrl}/issue/${ticketId}`,
     {
       headers: {
         "Authorization": `Basic ${btoa(`${email}:${apiToken}`)}`,
@@ -36,7 +36,7 @@ async function jiraFetcher(taskIds: string[]): Promise<Task[]> {
       id: issue.id,
       identifier: id,
       title: issue.fields.summary,
-      url: `${jiraSiteUrl}/browse/${id}`,
+      url: `${siteUrl}/browse/${id}`,
       message: issue.fields.status.name ?? "Unknown",
     };
   }));

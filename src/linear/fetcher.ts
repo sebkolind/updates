@@ -1,11 +1,11 @@
+import { load } from "../config.ts";
 import type { Task } from "../types/task.ts";
 
 import { type Issue, LinearClient } from "@linear/sdk";
-import { load } from "@std/dotenv";
 
-const env = await load();
+const config = await load();
 
-const apiKey = env.LINEAR_API_KEY;
+const apiKey = config.providers.linear.api.key;
 
 const client = new LinearClient({ apiKey });
 

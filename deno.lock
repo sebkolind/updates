@@ -17,6 +17,7 @@
     "jsr:@std/io@0.225": "0.225.0",
     "jsr:@std/path@^1.0.8": "1.0.8",
     "jsr:@std/testing@^1.0.5": "1.0.5",
+    "jsr:@std/yaml@^1.0.5": "1.0.5",
     "npm:@linear/sdk@*": "33.0.0_graphql@15.9.0",
     "npm:@linear/sdk@33": "33.0.0_graphql@15.9.0",
     "npm:@types/node@*": "22.5.4",
@@ -82,6 +83,9 @@
         "jsr:@std/internal",
         "jsr:@std/path"
       ]
+    },
+    "@std/yaml@1.0.5": {
+      "integrity": "71ba3d334305ee2149391931508b2c293a8490f94a337eef3a09cade1a2a2742"
     }
   },
   "npm": {
@@ -432,7 +436,9 @@
       "jsr:@std/cli@^1.0.7",
       "jsr:@std/dotenv@~0.225.2",
       "jsr:@std/fs@^1.0.6",
+      "jsr:@std/path@^1.0.8",
       "jsr:@std/testing@^1.0.5",
+      "jsr:@std/yaml@^1.0.5",
       "npm:@linear/sdk@33",
       "npm:enquirer@^2.4.1",
       "npm:zod@^3.23.8"

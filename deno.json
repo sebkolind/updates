@@ -19,7 +19,9 @@
     "@linear/sdk": "npm:@linear/sdk@^33.0.0",
     "@std/cli": "jsr:@std/cli@^1.0.7",
     "@std/fs": "jsr:@std/fs@^1.0.6",
+    "@std/path": "jsr:@std/path@^1.0.8",
     "@std/testing": "jsr:@std/testing@^1.0.5",
+    "@std/yaml": "jsr:@std/yaml@^1.0.5",
     "enquirer": "npm:enquirer@^2.4.1",
     "zod": "npm:zod@^3.23.8"
   }
