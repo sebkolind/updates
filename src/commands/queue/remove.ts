@@ -2,7 +2,14 @@ import { ensureFile } from "@std/fs/ensure-file";
 import { FILE_PATH } from "./constants.ts";
 import { readQueue } from "./utils.ts";
 
-async function runRemoveQueue(ids: string[]) {
+/**
+ * Remove tasks from the queue.
+ * Skips tasks that do not exist in the queue.
+ *
+ * @param {string[]} ids The list of task IDs to remove.
+ * @returns {Promise<void>} Promise that resolves when the operation is complete.
+ */
+async function runRemoveQueue(ids: string[]): Promise<void> {
   try {
     await ensureFile(FILE_PATH);
 

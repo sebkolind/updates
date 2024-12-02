@@ -1,7 +1,12 @@
 import { FILE_PATH } from "./constants.ts";
 import { readQueue } from "./utils.ts";
 
-async function runListQueue() {
+/**
+ * List tasks in the queue.
+ *
+ * @returns {Promise<void>} Promise that resolves when the operation is complete.
+ */
+async function runListQueue(): Promise<void> {
   try {
     await Deno.lstat(FILE_PATH);
 

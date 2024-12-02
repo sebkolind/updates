@@ -5,9 +5,11 @@ import { readQueue } from "./utils.ts";
 /**
  * Add a list of tasks to the queue.
  * Skips tasks that already exist in the queue.
- * TODO Check if the tasks exist in the provider before adding them to the queue.
+ *
+ * @param {string[]} ids The list of task IDs to add.
+ * @returns {Promise<void>} Promise that resolves when the operation is complete.
  */
-async function runQueue(ids: string[]) {
+async function runAddQueue(ids: string[]): Promise<void> {
   try {
     await ensureFile(FILE_PATH);
 
@@ -39,4 +41,4 @@ async function runQueue(ids: string[]) {
   }
 }
 
-export { runQueue };
+export { runAddQueue };

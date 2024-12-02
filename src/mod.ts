@@ -14,9 +14,9 @@
 
 import { Command } from "commander";
 import {
+  runAddQueue,
   runClearQueue,
   runListQueue,
-  runQueue,
   runRemoveQueue,
 } from "./commands/queue/index.ts";
 import { run } from "./run.ts";
@@ -38,11 +38,12 @@ program
   .action((args) => run(program, args));
 
 /**
- * Queue
+ * Queue commands.
  */
 program
   .command("queue <ids...>")
   .description("Queue tasks for later.")
+  .action(runAddQueue)
   .addCommand(
     program.command("clear")
       .alias("cl")
@@ -60,7 +61,6 @@ program
       .alias("rm")
       .description("Remove tasks from the queue.")
       .action(runRemoveQueue),
-  )
-  .action(runQueue);
+  );
 
 program.parseAsync();
