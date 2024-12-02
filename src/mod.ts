@@ -12,68 +12,55 @@
  * ```
  */
 
-import { parseArgs } from "@std/cli/parse-args";
+import { Command } from "commander";
+import {
+  runClearQueue,
+  runListQueue,
+  runQueue,
+  runRemoveQueue,
+} from "./commands/queue/index.ts";
+import { run } from "./run.ts";
+import { getVersion } from "./utils.ts";
 
-import { generateList } from "./utils.ts";
-import { getProvider } from "./provider.ts";
-import { Provider } from "./types/provider.ts";
-import { writeFile } from "./file.ts";
-import { validateProvider } from "./validation.ts";
-import { prompts } from "./prompt.ts";
+const program = new Command();
 
-async function main() {
-  const args = parseArgs(Deno.args, {
-    boolean: ["yes"],
-    string: ["provider", "file"],
+program
+  .name("@sebkolind/updates")
+  .version(getVersion())
+  .description(
+    "A minimalistic CLI tool for generating a Markdown list of updates based on task IDs.",
+  )
+  .argument("[ids...]", "Task IDs")
+  .option("-p, --provider <provider>", "Provider name")
+  .option("-f, --file <file>", "File path to write to")
+  .option("-y, --yes", "Confirm all defaults on tasks", false)
+  .option("-q, --queue", "Generate from queue", false)
+  .action((args) => run(program, args));
 
-    default: {
-      yes: false,
-      file: null,
-      provider: Provider.Jira,
-    },
+/**
+ * Queue
+ */
+program
+  .command("queue <ids...>")
+  .description("Queue tasks for later.")
+  .addCommand(
+    program.command("clear")
+      .alias("cl")
+      .description("Clear the queue.")
+      .action(runClearQueue),
+  )
+  .addCommand(
+    program.command("list")
+      .alias("ls")
+      .description("List tasks in the queue.")
+      .action(runListQueue),
+  )
+  .addCommand(
+    program.command("remove <ids...>")
+      .alias("rm")
+      .description("Remove tasks from the queue.")
+      .action(runRemoveQueue),
+  )
+  .action(runQueue);
 
-    alias: {
-      yes: ["y"],
-      file: ["f"],
-      provider: ["p"],
-    },
-  });
-
-  const taskIds = String(args._[0]).split(",") ?? [];
-  if (taskIds.length === 0) {
-    console.log("Please provide a comma-separated list of IDs.");
-    Deno.exit(1);
-  }
-
-  try {
-    const providerName = validateProvider(args.provider);
-    const provider = getProvider({ name: providerName });
-    const tasks = await provider.fetcher(taskIds);
-
-    for (const task of tasks) {
-      const { title, message } = args.yes ? task : await prompts(task);
-      task.title = title;
-      task.message = message;
-    }
-
-    const list = generateList({ tasks });
-
-    if (args.file != null) {
-      const path = args.file;
-      await writeFile({ path, list });
-    } else {
-      console.log(list);
-    }
-  } catch (error) {
-    console.error(error);
-    Deno.exit(1);
-  } finally {
-    // Reset the cursor
-    console.log("\x1b[?25h");
-    Deno.exit(0);
-  }
-}
-
-if (import.meta.main) {
-  main();
-}
+program.parseAsync();

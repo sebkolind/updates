@@ -1,4 +1,5 @@
 type Config = {
+  provider: string;
   providers: {
     linear: {
       api: API;

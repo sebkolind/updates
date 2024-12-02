@@ -9,7 +9,7 @@
   ],
   "tasks": {
     "start": "deno run --allow-net --allow-read src/mod.ts",
-    "compile": "deno compile --allow-net --allow-read --allow-env --allow-ffi --output dist/updates src/mod.ts",
+    "compile": "deno compile --allow-net --allow-read --allow-write --allow-env --allow-ffi --output dist/updates src/mod.ts",
     "test": "deno test --fail-fast --allow-net --allow-read --allow-write --allow-env",
     "test:coverage": "deno test --fail-fast --allow-net --allow-read --allow-write --allow-env --coverage=cov"
   },
@@ -22,6 +22,7 @@
     "@std/path": "jsr:@std/path@^1.0.8",
     "@std/testing": "jsr:@std/testing@^1.0.5",
     "@std/yaml": "jsr:@std/yaml@^1.0.5",
+    "commander": "npm:commander@^12.1.0",
     "enquirer": "npm:enquirer@^2.4.1",
     "zod": "npm:zod@^3.23.8"
   }

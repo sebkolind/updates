@@ -23,7 +23,7 @@ async function load(): Promise<Config> {
   try {
     const config = await Deno.readTextFile(configPath);
     return parse(config) as Config;
-  } catch (error: unknown) {
+  } catch (error) {
     if (error instanceof Deno.errors.NotFound) {
       throw new Error(`Failed to read config file: ${error.message}`);
     }
