@@ -8,6 +8,8 @@
  * @example
  * ```ts
  * deno install -gA -n updates jsr:@sebkolind/updates
+ *
+ * # Use Linear as the provider and write the updates to a file
  * updates -p linear -f ~/updates.md JSR-123
  * ```
  */
