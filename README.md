@@ -14,10 +14,16 @@ This will install the `updates` as a global executable named `updates`. Make sur
 
 ```sh
 # Print updates to console
-updates -p linear X-1,X-2,X-3
+updates -p linear X-1 X-2 X-3
 
 # Write updates to file
-updates -p linear X-1,X-2,X-3 -f ~/updates.md
+updates -p linear X-1 X-2 X-3 -f ~/updates.md
+
+# Add updates to queue
+updates queue X-1 X-2
+
+# Print updates to console from queue
+updates --queue # (or -q)
 ```
 
 ## Providers
