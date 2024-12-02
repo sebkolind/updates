@@ -14,6 +14,11 @@ async function run(program: Command, ids: string[]) {
   const taskIds = opts.queue ? await readQueue() : ids;
   if (opts.queue) {
     console.log("Generating from queue...");
+
+    if (taskIds.length === 0) {
+      console.log("Queue is empty.");
+      Deno.exit(0);
+    }
   }
 
   if (taskIds.length === 0) {
