@@ -52,7 +52,7 @@ async function run(program: Command, ids: string[]) {
       console.log(list);
     }
   } catch (error) {
-    console.error("Error:", error);
+    console.error(error);
     Deno.exit(1);
   } finally {
     // Reset the cursor
