@@ -63,4 +63,4 @@ program
       .action(runRemoveQueue),
   );
 
-program.parseAsync();
+program.parse();
