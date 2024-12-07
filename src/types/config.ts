@@ -9,6 +9,10 @@ type Config = {
       siteUrl: string;
       api: API;
     };
+    github: {
+      repo: string;
+      api: API;
+    };
   };
 };
 
