@@ -1,5 +1,6 @@
 import { jiraProvider } from "./jira/provider.ts";
 import { linearProvider } from "./linear/provider.ts";
+import { githubProvider } from "./github/provider.ts";
 import { Provider, type ProviderConfig } from "./types/provider.ts";
 
 /**
@@ -23,6 +24,8 @@ function getProvider({ name }: GetProviderParams) {
       return jiraProvider;
     case Provider.Linear:
       return linearProvider;
+    case Provider.GitHub:
+      return githubProvider;
     default:
       throw new Error(`Unsupported provider: ${name}`);
   }
