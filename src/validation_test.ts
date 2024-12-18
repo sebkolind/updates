@@ -18,7 +18,7 @@ Deno.test("validateProvider with invalid provider", () => {
   assertSpyCall(exitStub, 0, { args: [1] });
   assertSpyCall(consoleSpy, 0, {
     args: [
-      `Invalid provider "InvalidProvider". Please provide one of: jira, linear, GitHub`,
+      `Invalid provider "InvalidProvider". Please provide one of: jira, linear, github`,
     ],
   });
 });

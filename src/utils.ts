@@ -19,14 +19,4 @@ function generateList({ tasks }: GenerateListParams): string {
   return taskList.join("\n");
 }
 
-/**
- * Get version from deno.json.
- */
-function getVersion() {
-  const data = Deno.readTextFileSync("deno.json");
-  const json = JSON.parse(data);
-
-  return json.version;
-}
-
-export { generateList, getVersion };
+export { generateList };
