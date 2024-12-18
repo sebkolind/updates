@@ -22,13 +22,12 @@ import {
   runRemoveQueue,
 } from "./commands/queue/index.ts";
 import { run } from "./run.ts";
-import { getVersion } from "./utils.ts";
 
 const program = new Command();
 
 program
   .name("@sebkolind/updates")
-  .version(getVersion())
+  .version("0.1.9")
   .description(
     "A minimalistic CLI tool for generating a Markdown list of updates based on task IDs.",
   )
