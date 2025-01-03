@@ -8,7 +8,7 @@ import { FILE_PATH } from "./constants.ts";
 async function runClearQueue(): Promise<void> {
   try {
     await Deno.lstat(FILE_PATH);
-    await Deno.remove(FILE_PATH);
+    await Deno.writeTextFile(FILE_PATH, "[]");
 
     console.log("Queue cleared.");
   } catch (error) {
