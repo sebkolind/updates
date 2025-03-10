@@ -27,7 +27,7 @@ const program = new Command();
 
 program
   .name("@sebkolind/updates")
-  .version("0.1.12")
+  .version("0.1.13")
   .description(
     "A minimalistic CLI tool for generating a Markdown list of updates based on task IDs.",
   )
