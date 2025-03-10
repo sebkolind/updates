@@ -17,8 +17,8 @@ async function runRemoveQueue(ids: string[]): Promise<void> {
 
     const removed: string[] = [];
     ids.forEach((id) => {
-      if (tasks.includes(id)) {
-        tasks = tasks.filter((task) => task !== id);
+      if (tasks.find((task) => task.id === id)) {
+        tasks = tasks.filter((task) => task.id !== id);
         removed.push(id);
       } else {
         console.log(`Task ${id} does not exist in queue. Skipping.`);
