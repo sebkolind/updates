@@ -2,6 +2,10 @@ import { ensureFile } from "@std/fs/ensure-file";
 import { FILE_PATH } from "./constants.ts";
 import { readQueue } from "./utils.ts";
 
+type Options = {
+  message?: string;
+};
+
 /**
  * Add a list of tasks to the queue.
  * Skips tasks that already exist in the queue.
@@ -9,14 +13,14 @@ import { readQueue } from "./utils.ts";
  * @param {string[]} ids The list of task IDs to add.
  * @returns {Promise<void>} Promise that resolves when the operation is complete.
  */
-async function runAddQueue(ids: string[]): Promise<void> {
+async function runAddQueue(ids: string[], options?: Options): Promise<void> {
   try {
     await ensureFile(FILE_PATH);
 
     const currentQueue = await readQueue();
 
     const newTasks = ids.filter((id) => {
-      if (currentQueue.includes(id)) {
+      if (currentQueue.find((task) => task.id === id)) {
         console.log(`Task ${id} already exists in queue. Skipping.`);
         return false;
       }
@@ -28,7 +32,10 @@ async function runAddQueue(ids: string[]): Promise<void> {
       return;
     }
 
-    const updatedTasks = [...currentQueue, ...newTasks];
+    const updatedTasks = [...currentQueue];
+    newTasks.forEach((id) => {
+      updatedTasks.push({ id, message: options?.message });
+    });
 
     await Deno.writeTextFile(
       FILE_PATH,

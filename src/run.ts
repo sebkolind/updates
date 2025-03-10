@@ -11,7 +11,10 @@ async function run(program: Command, ids: string[]) {
   const config = await load();
   const opts = program.opts();
 
-  const taskIds = opts.queue ? await readQueue() : ids;
+  const queueTasks = await readQueue();
+  const getTask = (id: string) => queueTasks.find((t) => t.id === id);
+
+  const taskIds = opts.queue ? queueTasks.map((t) => t.id) : ids;
   if (opts.queue) {
     console.log("Generating from queue...");
 
@@ -37,7 +40,10 @@ async function run(program: Command, ids: string[]) {
     const tasks = await provider.fetcher(taskIds);
 
     for (const task of tasks) {
-      const { title, message } = opts.yes ? task : await prompts(task);
+      const queueTask = getTask(task.identifier);
+      const { title, message } = opts.yes
+        ? task
+        : await prompts(task, { message: queueTask?.message });
 
       task.title = title;
       task.message = message;

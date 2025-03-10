@@ -44,7 +44,8 @@ program
 program
   .command("queue <ids...>")
   .description("Queue tasks for later.")
-  .action(runAddQueue)
+  .option("-m, --message <message>", "Add a message to the task", "")
+  .action((ids, options) => runAddQueue(ids, options))
   .addCommand(
     program.command("clear")
       .alias("cl")
@@ -55,7 +56,8 @@ program
     program.command("list")
       .alias("ls")
       .description("List tasks in the queue.")
-      .action(runListQueue),
+      .option("--pretty", "Pretty print the JSON", false)
+      .action((options) => runListQueue(options)),
   )
   .addCommand(
     program.command("remove <ids...>")

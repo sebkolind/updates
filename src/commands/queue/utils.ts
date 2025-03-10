@@ -1,9 +1,10 @@
+import type { QueueTask } from "./types.ts";
 import { FILE_PATH } from "./constants.ts";
 
 /**
  * Read the queue from the file.
  */
-async function readQueue(): Promise<string[]> {
+async function readQueue(): Promise<QueueTask[]> {
   try {
     await Deno.lstat(FILE_PATH);
 
@@ -20,7 +21,7 @@ async function readQueue(): Promise<string[]> {
   }
 }
 
-function parseJSON(content: string): string[] {
+function parseJSON(content: string): QueueTask[] {
   try {
     return JSON.parse(content);
   } catch (_) {
